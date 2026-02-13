@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title> Will you be My Valentine? ❤️</title>
+<title>Be My Valentine ❤️</title>
 
 <style>
 body{
@@ -23,41 +23,54 @@ body{
   backdrop-filter:blur(6px);
   padding:22px;
   border-radius:18px;
-  width:90%;
+  width:92%;
   max-width:420px;
   box-shadow:0 10px 30px rgba(0,0,0,0.08);
 }
-h1{color:#7a4e5d;font-size:26px;}
-img{width:200px;margin:10px 0;}
+h1{color:#7a4e5d;font-size:24px;margin:10px 0 15px;}
+img{width:200px;margin:8px 0;}
+
+.buttons{
+  position:relative;
+  height:160px;
+}
+
 button{
   padding:12px 22px;
-  font-size:17px;
+  font-size:18px;
   border:none;
   border-radius:12px;
-  margin:10px;
   cursor:pointer;
+  position:absolute;
+  transition:all .25s ease;
 }
+
 #yesBtn{
   background:#e7a9b7;
   color:white;
-  transition:transform .2s;
+  left:20%;
 }
+
 #noBtn{
   background:#d8c2c8;
   color:white;
-  position:absolute;
+  left:55%;
 }
+
 #response{display:none;margin-top:15px;}
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="container" id="card">
   <img id="mainGif" src="minion1.gif" />
   <h1>Will you be my Valentine? ❤️</h1>
-  <button id="yesBtn">Yes 💖</button>
-  <button id="noBtn">No 😢</button>
+
+  <div class="buttons" id="btnArea">
+    <button id="yesBtn">Yes 💖</button>
+    <button id="noBtn">No 🙈</button>
+  </div>
 
   <div id="response">
     <div class="tenor-gif-embed"
@@ -65,35 +78,53 @@ button{
       data-share-method="host"
       data-aspect-ratio="0.951807"
       data-width="100%">
-      <a href="https://tenor.com/view/fireworks-exploding-heart-exploding-hearts-hearts-fireworks-hearts-gif-15390971472931965293">
-      </a>
+      <a href="https://tenor.com/view/fireworks-exploding-heart-exploding-hearts-hearts-fireworks-hearts-gif-15390971472931965293"></a>
     </div>
-    <h2>Yayyyyy!!! I knew it 😍</h2>
+    <h2>Yayyyyy!!! I knew it 😍💘</h2>
   </div>
 </div>
 
 <script>
 const noBtn=document.getElementById("noBtn");
 const yesBtn=document.getElementById("yesBtn");
+const btnArea=document.getElementById("btnArea");
 const response=document.getElementById("response");
 const mainGif=document.getElementById("mainGif");
-let scale=1;
+
+let yesScale=1;
+
+const texts=[
+ "Are you sure? 🥺",
+ "Think again ",
+ "Really? 😭",
+ "Last chance ",
+ "You can’t escape 😌",
+ "Just say yes already 💘"
+];
 
 function moveNo(){
-  const x=Math.random()*(window.innerWidth-100);
-  const y=Math.random()*(window.innerHeight-60);
+  const area=btnArea.getBoundingClientRect();
+  const maxX=area.width-100;
+  const maxY=area.height-50;
+
+  const x=Math.random()*maxX;
+  const y=Math.random()*maxY;
+
   noBtn.style.left=x+"px";
   noBtn.style.top=y+"px";
-  scale+=0.2;
-  yesBtn.style.transform=`scale(${scale})`;
+
+  noBtn.innerText=texts[Math.floor(Math.random()*texts.length)];
+
+  yesScale+=0.15;
+  yesBtn.style.transform=`scale(${yesScale})`;
 }
-noBtn.addEventListener("touchstart",moveNo);
+
 noBtn.addEventListener("mouseover",moveNo);
+noBtn.addEventListener("touchstart",moveNo);
 
 yesBtn.addEventListener("click",()=>{
   mainGif.style.display="none";
-  yesBtn.style.display="none";
-  noBtn.style.display="none";
+  btnArea.style.display="none";
   response.style.display="block";
 });
 </script>
