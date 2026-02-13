@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Be My Valentine ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(180deg, #fff7f9 0%, #ffeef3 100%);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .container {
+        position: relative;
+        width: 92%;
+        max-width: 420px;
+        background: #ffffffcc;
+        backdrop-filter: blur(6px);
+        border-radius: 18px;
+        padding: 22px 18px 28px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+
+    h1 {
+        color: #7a4e5d;
+        font-size: 26px;
+        margin: 12px 0 18px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+    }
+
+    img {
+        width: 200px;
+        margin: 6px 0 10px;
+    }
+
+    button {
+        padding: 12px 22px;
+        font-size: 17px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        margin: 10px;
+        position: relative;
+    }
+
+    #yesBtn {
+        background: #e7a9b7;
+        color: white;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        box-shadow: 0 6px 14px rgba(231,169,183,0.35);
+    }
+
+    #noBtn {
+        background: #d8c2c8;
+        color: white;
+        position: absolute;
+        box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+    }
+
+    #response {
+        display: none;
+        margin-top: 18px;
+    }
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+    <img id="mainGif" src="minion1.gif" />
+
+    <h1>Will you be my Valentine? ❤️</h1>
+
+    <button id="yesBtn">Yes 💖</button>
+    <button id="noBtn">No 😢</button>
+
+    <div id="response">
+        <div class="tenor-gif-embed"
+             data-postid="15390971472931965293"
+             data-share-method="host"
+             data-aspect-ratio="0.951807"
+             data-width="100%">
+        </div>
+        <h2>Yayyyyy!!! I knew it 😍💘</h2>
+    </div>
+</div>
+
+<script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const response = document.getElementById("response");
+    const mainGif = document.getElementById("mainGif");
+
+    let yesSize = 1;
+
+    function moveNoButton() {
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 60);
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+
+        yesSize += 0.2;
+        yesBtn.style.transform = `scale(${yesSize})`;
+    }
+
+    // Works on phone tap
+    noBtn.addEventListener("touchstart", moveNoButton);
+    noBtn.addEventListener("mouseover", moveNoButton);
+
+    yesBtn.addEventListener("click", () => {
+        mainGif.style.display = "none";
+        yesBtn.style.display = "none";
+        noBtn.style.display = "none";
+        response.style.display = "block";
+        document.body.style.background = "#ffb3c6";
+    });
+</script>
+
+<script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+
+</body>
+</html>
